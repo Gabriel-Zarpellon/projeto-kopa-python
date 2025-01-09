@@ -2,7 +2,7 @@ from exceptions import NegativeTitlesError, InvalidYearCupError, ImpossibleTitle
 from datetime import datetime
 
 
-def data_processing(team: dict):
+def data_processing(**team: dict):
     current_date = datetime.now()
     first_cup = datetime.strptime(team["first_cup"], "%Y-%m-%d")
     possible_cups = round((int(first_cup.year) - int(current_date.year)) / 4, 0)
