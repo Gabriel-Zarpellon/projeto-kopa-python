@@ -66,14 +66,14 @@ Padrão de resposta (STATUS: 200)
 
 ```json
 [
-	{
-		"id": 1,
-		"name": "Brasil",
-		"titles": 5,
-		"top_scorer": "Pelé",
-		"fifa_code": "BRA",
-		"first_cup": "1930-07-13"
-	}
+  {
+    "id": 1,
+    "name": "Brasil",
+    "titles": 5,
+    "top_scorer": "Pelé",
+    "fifa_code": "BRA",
+    "first_cup": "1930-07-13"
+  }
 ]
 ```
 
