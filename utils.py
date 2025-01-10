@@ -5,7 +5,7 @@ from datetime import datetime
 def data_processing(**team: dict):
     current_date = datetime.now()
     first_cup = datetime.strptime(team["first_cup"], "%Y-%m-%d")
-    possible_cups = round((int(first_cup.year) - int(current_date.year)) / 4, 0)
+    possible_cups = round(((int(current_date.year)) - int(first_cup.year)) / 4, 0)
 
     if team["titles"] < 0:
         raise NegativeTitlesError("titles cannot be negative")
