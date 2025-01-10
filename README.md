@@ -1,4 +1,150 @@
-# M5 - Kopa do Mundo
+# Kopa do Mundo
+## Descrição do projeto
+
+Este projeto é constituído de uma API desenvolvida com base em testes, como atividade do módulo de Python da Kenzie Academy.
+
+A API consiste na criação e gerenciamento de seleções de futebol, onde é feita a validação do número de títulos, se o ano em que a seleção iniciou é válido e se a quantidade de títulos possuído é possível, de acordo com as datas.
+É possível realizar também a leitura de todas as seleções e a atualização, deleção e leitura individual por id.
+
+## Rotas de times
+
+### Registro de time POST /teams/
+Padrão de corpo
+
+```json
+{
+  "name": "Brasil",
+  "titles": 5,
+  "top_scorer": "Pelé",
+  "fifa_code": "BRA",
+  "first_cup": "1930-07-13"
+}
+```
+
+Padrão de resposta (STATUS 201)
+
+```json
+{
+  "id": 1,
+	"name": "Brasil",
+	"titles": 5,
+	"top_scorer": "Pelé",
+	"fifa_code": "BRA",
+	"first_cup": "1930-07-13"
+}
+```
+
+#### Possíveis erros
+
+400 BAD REQUEST - Títulos negativos
+
+```json
+{
+  "error": "titles cannot be negative"
+}
+```
+
+400 BAD REQUEST - Ano da primera copa inválido
+
+```json
+{
+  "error": "there was no world cup this year"
+}
+```
+
+400 BAD REQUEST - Número de títulos maior do que o possível
+
+```json
+{
+  "error": "impossible to have more titles than disputed cups"
+}
+```
+
+### Leitura de times GET /teams/
+
+Padrão de resposta (STATUS: 200)
+
+```json
+[
+	{
+		"id": 1,
+		"name": "Brasil",
+		"titles": 5,
+		"top_scorer": "Pelé",
+		"fifa_code": "BRA",
+		"first_cup": "1930-07-13"
+	}
+]
+```
+
+URL Search Params
+
+| Parâmetro | Exemplo de uso | Descrição                                                          |
+| --------- | -------------- | ------------------------------------------------------------------ |
+|  team_id  | /teams/1/      | Forneça o "id" do time para trazer somente o time do id definido   |
+
+#### Possíveis erros:
+
+STATUS (404) - id inválido
+
+```json
+{
+  "message": "Team not found"
+}
+```
+
+### Atualizar time PATCH /teams/<int:team_id>/
+
+Padrão de corpo
+
+Os atributos dessa requisição são todos opcionais.
+
+```json
+{
+  "name": "Brasil",
+  "titles": 6,
+  "top_scorer": "Pelé",
+  "fifa_code": "BRA",
+  "first_cup": "1930-07-13"
+}
+```
+
+Padrão de resposta (STATUS: 200)
+
+```json
+{
+	"id": 2,
+	"name": "Brasil",
+	"titles": 6,
+	"top_scorer": "Pelé",
+	"fifa_code": "BRA",
+	"first_cup": "1930-07-13"
+}
+```
+
+#### Possíveis erros
+
+STATUS (404) - id inválido
+
+```json
+{
+  "message": "Team not found"
+}
+```
+
+### Excluir time DELETE /teams/<int:team_id>/
+
+Esta rota não tem um corpo de resposta (STATUS: 204)
+
+#### Possíveis erros
+
+STATUS (404) - id inválido
+
+```json
+{
+  "message": "Team not found"
+}
+```
 
 ## Preparando ambiente para execução dos testes
 ### Procedimentos para rodar os testes da tarefa 1
